@@ -1,55 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Design Interface</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Left Panel: Colors -->
-        <div class="panel colors">
-            <h2>Colors</h2>
-            <div class="color-preview">
-                <div class="color-box" style="background-color: #fc0703;"></div>
-                <input type="text" value="Red" readonly> 
-            </div>
-            <div class="color-preview">
-                <div class="color-box" style="background-color: #000000;"></div>
-                <input type="text" value="Black" readonly> 
-            </div>
-            <div class="color-preview">
-                <div class="color-box" style="background-color: #ffffff;"></div>
-                <input type="text" value="White" readonly>
-            </div>
-        </div>
+<?php
 
-        <!-- Center Panel: Preview -->
-        <div class="panel preview">
-            <h2>Preview</h2>
-            <div class="preview-box">
-                <p>1</p>
-            </div>
-        </div>
+include 'config.php';
+include 'functions.php';
+include 'includes/header.php';
+?>
 
-        <!-- Right Panel: Design -->
-        <div class="panel design">
-            <h2>Design</h2>
-            <div class="design-box"></div>
-            <div class="design-box"></div>
+<div class="container">
+    <!-- Left Panel: Colors -->
+    <div class="panel colors" >
+        <h2>Available Colors</h2>
+        <?php
+
+        $colors = getAllColors();
+        foreach ($colors as $color) {
+            $colorImage = "imgs/" . strtolower($color['name']) . ".png"; 
+            echo '<div class="color-preview">';
+            echo '<button class="color-button" style="background-color: ' . htmlspecialchars($color['hex']) . ';" onclick="selectColor(\'' . htmlspecialchars($colorImage) . '\')"></button>';
+            echo '<span>' . htmlspecialchars($color['name']) . '</span>';
+            echo '</div>';
+        }
+        ?>
+    </div>
+
+    <!-- Center Panel: Preview -->
+    <div class="panel preview">
+    <h2>Preview</h2>
+    <div class="preview-box" >
+        <!-- preview image here -->
+        <img id="tshirt-preview" src="imgs/redblack.png" alt="T-Shirt Preview" style="max-width: 100%; max-height: 100%; z-index: 1;">
+    </div>
+    </div>
+
+
+    <!-- Right Panel: Designs -->
+    <div class="panel options">
+        <h2>Available Designs</h2>
+        <div class="option-group" id="design-buttons">
+            <?php
+            //to fetch all designs from the database
+            $designs = getUploadedDesigns();
+            
+            //to theck if there are designs
+            if ($designs):
+                foreach ($designs as $design):
+                    //to ensure the file_path exists
+                    if (isset($design['file_path'])):
+                        //to construct the full path using the fixed directory and the filename
+                        $filePath = 'uploads/' . $design['file_path'];
+                        ?>
+                        <button class="design-button" onclick="selectDesign('<?php echo htmlspecialchars($filePath); ?>')">
+                            <img src="<?php echo htmlspecialchars($filePath); ?>" alt="<?php echo htmlspecialchars($design['name']); ?>" style="width: 100px; height: 100px; object-fit: cover;">
+                        </button>
+                        <?php
+                    else:
+                        echo '<p>Missing file path for design: ' . htmlspecialchars($design['name']) . '</p>';
+                    endif;
+                endforeach;
+            else:
+                echo '<p>No designs available.</p>';
+            endif;
+            ?>
         </div>
     </div>
-</body>
-</html>
+</div>
 
-</body>
-</html>
+<script src="js/script.js"></script>
+<?php
+include 'includes/footer.php';
+?>
