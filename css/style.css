@@ -1,0 +1,248 @@
+/* General Body Styles */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Header Styles */
+header {
+    width: 120rem;
+    background-color: #2b6cb0; /* Primary Blue */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header-container h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    color: #f4f4f4;
+    text-decoration: underline;
+}
+
+/* Footer Styles */
+footer {
+    width: 100%;
+    background-color: #2b6cb0;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 40px auto;
+    max-width: 100rem;
+    padding: 0 20px;
+}
+
+/* Panel Styles */
+.panel {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.panel h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Color Preview Section */
+.color-preview {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    background-color: #edf2f7;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    
+}
+
+.color-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+.color-button.selected {
+    border-color: #2ff0e0;
+    border: 3px solid #1bf3abfd;
+}
+
+.color-preview span {
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+}
+
+
+/* Button Styles */
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #2b6cb0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #13d8ad;
+}
+
+/* Design Panel */
+.option-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 300px;
+}
+
+.design-button {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    transition: box-shadow 0.3s ease;
+    border-radius: 8px;
+}
+
+.design-button img {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+}
+
+.design-button img .selected {
+    border-color: #2ff0e0;
+    border: 3px solid #1bf3abfd;
+}
+
+.design-button:hover {
+    box-shadow: 0 4px 6px rgba(111, 255, 75, 0.1);
+}
+
+/* Preview Section */
+.preview-box {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    margin-bottom: 30px;
+
+}
+
+#tshirt-preview {
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 1;
+}
+
+.preview-box img {
+    max-width: 100%;
+    max-height: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 10px;
+    }
+
+    nav ul {
+        margin-top: 15px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .panel {
+        margin-bottom: 20px;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .color-preview {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .design-button {
+        width: 100px;
+        height: 100px;
+    }
+}
